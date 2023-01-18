@@ -20,7 +20,7 @@ func Read_from_db() []string {
 	Handle_error(err)
 	defer rows.Close()
 
-	var users []string 
+	var users []string
 
 	for rows.Next() {
 		var u string
@@ -28,7 +28,6 @@ func Read_from_db() []string {
 		Handle_error(err)
 		users = append(users, u)
 	}
-	
+
 	return users
 }
-

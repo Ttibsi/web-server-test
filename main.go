@@ -1,9 +1,13 @@
 package main
 
-import "github.com/Ttibsi/web-server-test/pkg"
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/Ttibsi/web-server-test/pkg"
+)
 
 func main() {
-	fmt.Println("marker")
-	pkg.Init()
+	users := pkg.Read_from_db()
+	fmt.Println(users)
+	pkg.Serve()
 }
