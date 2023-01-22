@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-<style>
-{{.Css}}
-</style>
-</head>
+	<head>
+		<style>
+		{{.Css}}
+		</style>
+	</head>
 
-<body>
-<h2>Welcome to my database</h2>
+	<body>
+		<h2>Welcome to my database</h2>
 
-Users:
-<ul>
-{{range .User_list}}
-	<li>{{.}}</li>
-{{end}}
-</ul>
+		Users:
+		<ul>
+			{{range .User_list}}
+			<li>{{.}}</li>
+			{{end}}
+		</ul>
 
-</body>
+		<form action="/new", method="post">
+			Add new user: <input type="text" name="user">
+		</form>
+
+	</body>
 </html>

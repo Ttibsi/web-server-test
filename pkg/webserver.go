@@ -26,8 +26,17 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	t.Execute(w, c)
 }
 
+func addHandler(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+	fmt.Println(r.Form["user"])
+	insertIntoDB(r.Form["user"][0])
+	User_list = Read_from_db() // This is a bad way to do this
+	http.Redirect(w, r, "/users", http.StatusSeeOther)
+}
+
 func Serve(users []string) {
 	User_list = users
 	http.HandleFunc("/", handler)
+	http.HandleFunc("/new", addHandler)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
