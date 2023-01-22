@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+{{.Css}}
+</style>
+</head>
+
+<body>
+<h2>Welcome to my database</h2>
+
+Users:
+<ul>
+{{range .User_list}}
+	<li>{{.}}</li>
+{{end}}
+</ul>
+
+</body>
+</html>

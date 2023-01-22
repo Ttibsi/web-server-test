@@ -12,6 +12,7 @@ easier and more suitable to work with for another project I want to work on.
 * Connect to an SQLite database file and read names from a `users` table
 * Serve a simple html file to the localhost listing all of the names in the 
 database
+* Adjust the displayed webpage with some basic CSS
 * Display a textbox for the user to enter a new name and a button that - when
 pressed - will enter the text from the textbox into the atabase as a new 
 username record
