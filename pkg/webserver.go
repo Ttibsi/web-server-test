@@ -12,7 +12,7 @@ var User_list []string
 
 type Content struct {
 	User_list []string
-	Css string
+	Css       string
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {

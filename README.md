@@ -10,18 +10,18 @@ easier and more suitable to work with for another project I want to work on.
 
 ### Definition of Done
 * Connect to an SQLite database file and read names from a `users` table
-* Serve a simple html file to the localhost listing all of the names in the 
+* Serve a simple html file to the localhost listing all of the names in the
 database
 * Adjust the displayed webpage with some basic CSS
 * Display a textbox for the user to enter a new name and a button that - when
-pressed - will enter the text from the textbox into the atabase as a new 
+pressed - will enter the text from the textbox into the atabase as a new
 username record
 
-I'll also be recording my thoughts as I work through this project in each 
-language for future reference. Please see `thoughts.md` for more. 
+I'll also be recording my thoughts as I work through this project in each
+language for future reference. Please see `thoughts.md` for more.
 
-Note that Rust and Golang are my focus with this - I will add Python later on 
-as an experiment to see how easy it is to achieve the same result in that 
+Note that Rust and Golang are my focus with this - I will add Python later on
+as an experiment to see how easy it is to achieve the same result in that
 language too
 
 ---
@@ -32,4 +32,3 @@ Creating the database:
 CREATE TABLE users(user_id INTEGER PRIMARY KEY AUTOINCREMENT, user_name CHAR(50) NOT NULL UNIQUE);
 INSERT INTO users VALUES(NULL, 'Tom'), (NULL, 'Lily'), (NULL, 'Isla'), (NULL, 'Damian');
 ```
-
