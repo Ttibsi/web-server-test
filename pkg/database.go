@@ -19,6 +19,7 @@ func insertIntoDB(name string) {
 	Handle_error(err)
 	_, e := db.Exec("INSERT INTO users VALUES(NULL, ?);", name)
 	Handle_error(e)
+	db.Close()
 }
 
 func Read_from_db() []string {
@@ -37,5 +38,6 @@ func Read_from_db() []string {
 		users = append(users, u)
 	}
 
+	db.Close()
 	return users
 }

@@ -43,3 +43,8 @@ outside the main.py
 * Templating using jinja2 appears to be powerful enough for most tasks, and is
 battle-tested in repos a whole lot larger than this. There is enough documentation
 out there.
+
+### Rust
+* Working with `rusqlite` library doesn't seem to be too intuitive, although
+I'm putting this down to unfamiliarity as well - it seems to use a lot of
+iterators to loop through results from `SELECT` queries
