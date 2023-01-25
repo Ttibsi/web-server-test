@@ -1,4 +1,5 @@
 use rusqlite::{Connection, Result};
+mod webserver;
 
 fn read_from_db() -> Vec<String> {
     let query = "SELECT user_name FROM users;";
@@ -19,5 +20,7 @@ fn insert_to_db(name: String) -> Result<usize> {
 }
 
 fn main() {
-    println!("{:?}", read_from_db());
+    let users = read_from_db();
+    println!("{:?}", users);
+    webserver::serve(users);
 }
