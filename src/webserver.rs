@@ -1,9 +1,25 @@
+use actix_files::NamedFile;
 use actix_web::*;
-use std::io;
+use std::path::PathBuf;
 
-// https://github.com/actix/examples/blob/master/basics/basics/src/main.rs
+#[get("/")]
+async fn home() -> impl Responder {
+    HttpResponse::Ok().body("Hello world!")
+}
+
+#[get("/users")]
+async fn users() -> Result<NamedFile> {
+    let path: PathBuf = "./http_rust/users.html".parse().unwrap();
+    Ok(NamedFile::open(path)?)
+}
+
+// https://actix.rs/docs/getting-started
 #[actix_web::main]
-pub async fn serve(names: Vec<String>) -> io::Result<()> {
-    return Ok(());
-
+pub async fn serve(names: Vec<String>) -> std::io::Result<()> {
+    return HttpServer::new(|| {
+        App::new().service(home).service(users)
+    })
+    .bind(("127.0.0.1", 5656))?
+    .run()
+    .await;
 }
