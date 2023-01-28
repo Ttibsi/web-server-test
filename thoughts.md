@@ -27,3 +27,19 @@ which I'd make an actual pattern in an full project).
 too long to run into the limitations of them. Despite that, I think a lot
 of what they'll be used for will be pretty simple things, and this won't be
 a significant issue
+
+### Python
+* This isn't the most complicated method of creating a static web server in
+the world, but flask still has a learning curve - one that I didn't really work
+with and just picked up the absolute basics needed for this.
+* I think I'd like to work with this at some point in the future if I can find
+the best way of structuring the project - especially with the flask code held
+outside the main.py
+* This was the easiest library to include a css file in, although the usage of
+`templates/` and `static/` directories is annoying at this small scale
+    * I can see my mind changing on this in an actual project with more content
+    than this simple prototype, however
+* CSS was picked up without any hassle here
+* Templating using jinja2 appears to be powerful enough for most tasks, and is
+battle-tested in repos a whole lot larger than this. There is enough documentation
+out there.
