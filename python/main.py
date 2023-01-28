@@ -47,11 +47,3 @@ def insert_into_db(name: str) -> None:
     cur = con.cursor()
     cur.execute(f'INSERT INTO users VALUES (NULL, "{name}");')
     con.commit()
-
-
-def main() -> int:
-    return 0
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())

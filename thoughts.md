@@ -39,3 +39,7 @@ outside the main.py
 `templates/` and `static/` directories is annoying at this small scale
     * I can see my mind changing on this in an actual project with more content
     than this simple prototype, however
+* CSS was picked up without any hassle here
+* Templating using jinja2 appears to be powerful enough for most tasks, and is
+battle-tested in repos a whole lot larger than this. There is enough documentation
+out there.
