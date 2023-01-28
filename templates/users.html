@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <link rel="stylesheet" href="style.css">
+	</head>
+
+	<body>
+		<h2>Welcome to my database</h2>
+
+		Users:
+		<ul>
+        {% for val in users %}
+            <li>- {{val}}</li>
+        {% endfor %}
+		</ul>
+
+		<form action="/new", method="post">
+			Add new user: <input type="text" name="user">
+		</form>
+
+	</body>
+</html>
