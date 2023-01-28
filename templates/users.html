@@ -10,11 +10,11 @@
 		Users:
 		<ul>
         {% for val in users %}
-            <li>- {{val}}</li>
+            <li>{{val}}</li>
         {% endfor %}
 		</ul>
 
-		<form action="/new", method="post">
+		<form method="post">
 			Add new user: <input type="text" name="user">
 		</form>
 

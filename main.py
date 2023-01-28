@@ -1,12 +1,10 @@
 import sqlite3
 
-from flask import Flask
-from flask import render_template
-from flask import send_from_directory
+import flask
 
 # from python import webserver
 
-app = Flask(__name__)
+app = flask.Flask(__name__)
 
 
 @app.route("/")
@@ -17,12 +15,19 @@ def hello_world():
 @app.route("/users")
 def users():
     users: list[str] = read_from_db()
-    return render_template("users.html", users=users)
+    return flask.render_template("users.html", users=users)
+
+
+@app.route("/users", methods=["POST"])
+def new_user():
+    text = flask.request.form["user"]
+    insert_into_db(text)
+    return flask.redirect(flask.url_for("users"))
 
 
 @app.route("/style.css")
 def styles():
-    return send_from_directory("templates", "style.css")
+    return flask.send_from_directory("templates", "style.css")
 
 
 def read_from_db() -> list[str]:
@@ -40,7 +45,7 @@ def read_from_db() -> list[str]:
 def insert_into_db(name: str) -> None:
     con = sqlite3.connect("db.db")
     cur = con.cursor()
-    cur.execute(f"INSERT INTO users VALUES (NULL, {name})")
+    cur.execute(f'INSERT INTO users VALUES (NULL, "{name}");')
     con.commit()
 
 
