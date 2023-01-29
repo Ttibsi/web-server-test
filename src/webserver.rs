@@ -1,8 +1,6 @@
 use actix_files::{Files, NamedFile};
 use actix_web::*;
 use std::path::PathBuf;
-use tera::Tera;
-// https://dev.to/0xbf/day11-write-web-app-with-actix-web-100dayofrust-1lkn
 
 #[get("/")]
 async fn home() -> impl Responder {
@@ -11,17 +9,8 @@ async fn home() -> impl Responder {
 
 #[get("/users")]
 async fn users() -> Result<NamedFile> {
-    // let path: PathBuf = "./http_rust/users.html".parse().unwrap();
-    let tera = match Tera::new("./http_rust/users.html") { 
-        Ok(t) => t,
-        Err(_) => {
-            println!("File not found");
-            ::std::process::exit(1);
-            
-        }
-    };
-
-    return Ok(NamedFile::open(tera)?);
+    let path: PathBuf = "./http_rust/users.html".parse().unwrap();
+    Ok(NamedFile::open(path)?)
 }
 
 // https://actix.rs/docs/getting-started
@@ -31,7 +20,7 @@ pub async fn serve(names: Vec<String>) -> std::io::Result<()> {
         App::new()
             .service(home)
             .service(users)
-            .service(Files::new("./http_rust/", ".").show_files_listing())
+            .service(Files::new("/http_rust", "./http_rust"))
     })
     .bind(("127.0.0.1", 5656))?
     .run()
