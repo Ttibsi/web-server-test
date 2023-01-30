@@ -14,7 +14,7 @@
             <% } %>
 		</ul>
 
-		<form action="/new", method="post">
+		<form action="/users", method="post">
 			Add new user: <input type="text" name="user">
 		</form>
 	</body>

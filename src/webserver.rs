@@ -10,13 +10,13 @@ async fn home() -> impl Responder {
 #[derive(TemplateOnce)]
 #[template(path = "users.stpl")]
 struct UsersTemplate {
-    messages: Vec<String>
+    messages: Vec<String>,
 }
 
 #[get("/users")]
 async fn users() -> impl Responder {
     let ctx = UsersTemplate {
-        messages: crate::database::read_from_db(), 
+        messages: crate::database::read_from_db(),
     };
 
     return HttpResponse::Ok().body(ctx.render_once().unwrap());
