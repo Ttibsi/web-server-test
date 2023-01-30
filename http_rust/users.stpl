@@ -9,7 +9,9 @@
 
 		Users:
 		<ul>
-            <li></li>
+            <% for usr in &messages { %>
+                <li><%= usr %></li>
+            <% } %>
 		</ul>
 
 		<form action="/new", method="post">

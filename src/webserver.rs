@@ -1,21 +1,30 @@
-use actix_files::{Files, NamedFile};
+use actix_files::Files;
 use actix_web::*;
-use std::path::PathBuf;
+use sailfish::TemplateOnce;
 
 #[get("/")]
 async fn home() -> impl Responder {
     HttpResponse::Ok().body("Hello world!")
 }
 
+#[derive(TemplateOnce)]
+#[template(path = "users.stpl")]
+struct UsersTemplate {
+    messages: Vec<String>
+}
+
 #[get("/users")]
-async fn users() -> Result<NamedFile> {
-    let path: PathBuf = "./http_rust/users.html".parse().unwrap();
-    Ok(NamedFile::open(path)?)
+async fn users() -> impl Responder {
+    let ctx = UsersTemplate {
+        messages: crate::database::read_from_db(), 
+    };
+
+    return HttpResponse::Ok().body(ctx.render_once().unwrap());
 }
 
 // https://actix.rs/docs/getting-started
 #[actix_web::main]
-pub async fn serve(names: Vec<String>) -> std::io::Result<()> {
+pub async fn serve() -> std::io::Result<()> {
     return HttpServer::new(|| {
         App::new()
             .service(home)
