@@ -13,7 +13,13 @@ pub fn read_from_db() -> Vec<String> {
         .unwrap();
 }
 
-pub fn insert_to_db(name: String) -> Result<usize> {
+pub fn insert_to_db(name: String) -> usize {
     let conn = Connection::open("./db.db").unwrap();
-    return conn.execute("INSERT INTO users VALUES(?1)", [name]);
+    println!("Trying to insert");
+    let entered = match conn.execute("INSERT INTO users VALUES(NULL, ?1)", [name]) {
+        Ok(x) => x,
+        Err(_) => 0 
+    };
+    println!("{} inserted into db", entered);
+    return entered;
 }

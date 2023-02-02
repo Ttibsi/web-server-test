@@ -22,6 +22,15 @@ async fn users() -> impl Responder {
     return HttpResponse::Ok().body(ctx.render_once().unwrap());
 }
 
+#[post("/users")]
+async fn insert_user(input: web::Form<String>) -> impl Responder {
+// https://www.vultr.com/docs/building-rest-apis-in-rust-with-actix-web/
+    println!("POST request accepted");
+    let name: String = input.to_owned();
+    let value = crate::database::insert_to_db(name);
+    return HttpResponse::Ok()
+}
+
 // https://actix.rs/docs/getting-started
 #[actix_web::main]
 pub async fn serve() -> std::io::Result<()> {
