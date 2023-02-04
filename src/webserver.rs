@@ -1,6 +1,9 @@
 use actix_files::Files;
+use actix_web::http::StatusCode;
+use actix_web::web::*;
 use actix_web::*;
 use sailfish::TemplateOnce;
+use serde::Deserialize;
 
 #[get("/")]
 async fn home() -> impl Responder {
@@ -22,22 +25,23 @@ async fn users() -> impl Responder {
     return HttpResponse::Ok().body(ctx.render_once().unwrap());
 }
 
-#[post("/users")]
-async fn insert_user(input: web::Form<String>) -> impl Responder {
-// https://www.vultr.com/docs/building-rest-apis-in-rust-with-actix-web/
-    println!("POST request accepted");
-    let name: String = input.to_owned();
-    let value = crate::database::insert_to_db(name);
-    return HttpResponse::Ok()
+#[derive(Debug, Deserialize)]
+pub struct FormData {
+    user: String,
 }
 
-// https://actix.rs/docs/getting-started
+async fn insert_user(params: web::Form<FormData>) -> impl Responder {
+    let value = crate::database::insert_to_db(params.user.clone());
+    return Redirect::to("/users").using_status_code(StatusCode::FOUND);
+}
+
 #[actix_web::main]
 pub async fn serve() -> std::io::Result<()> {
     return HttpServer::new(|| {
         App::new()
             .service(home)
             .service(users)
+            .service(web::resource("/users").route(web::post().to(insert_user)))
             .service(Files::new("/http_rust", "./http_rust"))
     })
     .bind(("127.0.0.1", 5656))?
