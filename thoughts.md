@@ -43,3 +43,26 @@ outside the main.py
 * Templating using jinja2 appears to be powerful enough for most tasks, and is
 battle-tested in repos a whole lot larger than this. There is enough documentation
 out there.
+
+### Rust
+* Working with `rusqlite` library doesn't seem to be too intuitive, although
+I'm putting this down to unfamiliarity as well - it seems to use a lot of
+iterators to loop through results from `SELECT` queries
+* Rust is harder to work with as a language, and reading docs/finding fixes for
+compliated errors are either harder to find or more difficult to find what I
+need.
+    * This may potentially be down to my relative lack of experience with Rust
+    compared to Go, as well as the higher learning curve Rust has, generally
+    making this experience more difficult than the other languages in this repo
+    - altohugh this was expected at the start.
+* There are multiple options out there for templating languages -- Despite using
+sailfish, I think Tera may have been a bettr option.
+    - Not a fan of using a separate file format for the template as it'll be
+    more difficult to track over a longer period of time, and the separate
+    Sailfish.toml config file here.
+* Actix-web is all that I'd need (instead of a large framework like Yew or
+Leptos) but the docs aren't the easiest to navifate -- this may be an
+ecosystem-wide issue
+* The library also seemed all over the place, with it being harder to reuse
+knowledge from one function in another place -- such as using the endpoint macro
+for both `get` and `post`

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <link rel="stylesheet" href="/http_rust/style.css">
+	</head>
+
+	<body>
+		<h2>Welcome to my database</h2>
+
+		Users:
+		<ul>
+            <% for usr in &messages { %>
+                <li><%= usr %></li>
+            <% } %>
+		</ul>
+
+		<form action="/users", method="post">
+			Add new user: <input type="text" name="user">
+		</form>
+	</body>
+</html>
