@@ -15,7 +15,7 @@ func Handle_error(e error) {
 
 func insertIntoDB(name string) {
 	// This doesn't have any validation
-	db, err := sql.Open("sqlite3", "../db.db")
+	db, err := sql.Open("sqlite3", "./db.db")
 	Handle_error(err)
 	_, e := db.Exec("INSERT INTO users VALUES(NULL, ?);", name)
 	Handle_error(e)
@@ -23,7 +23,7 @@ func insertIntoDB(name string) {
 }
 
 func Read_from_db() []string {
-	db, err := sql.Open("sqlite3", "../db.db")
+	db, err := sql.Open("sqlite3", "./db.db")
 	Handle_error(err)
 	rows, err := db.Query("SELECT user_name FROM users;")
 	Handle_error(err)

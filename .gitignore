@@ -3,4 +3,4 @@ python/__pycache__/
 .mypy_cache/
 
 rust/Cargo.lock
-rust/target/*
+rust/target
