@@ -18,11 +18,17 @@ type Content struct {
 func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(User_list)
 	title := r.URL.Path[1:]
-	filename := "http_go/" + title + ".html"
-	css_file, _ := os.ReadFile("http_go/style.css")
+	filename := "http/" + title + ".html"
+	css_file, err := os.ReadFile("http/style.css")
+	if err != nil {
+		fmt.Println("Error:" + err.Error())
+	}
 
 	c := Content{User_list: User_list, Css: string(css_file)}
-	t, _ := template.ParseFiles(filename)
+	t, err := template.ParseFiles(filename)
+	if err != nil {
+		fmt.Println("Error:" + err.Error())
+	}
 	t.Execute(w, c)
 }
 
