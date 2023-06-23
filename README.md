@@ -9,21 +9,13 @@ The goal here is to see which of the two main langauges (Golang and Rust) are
 easier and more suitable to work with for another project I want to work on.
 
 ### To run
-* `Go` - Run `go run .` and open `localhost:8080/users` in your web browser
-* `Rust` - Run `cargo run` and open `localhost:5656/users` in your web browser
-    * This will require the installation of `libsqlilte-dev`
-* `Python` - This is more complex than just a single command as I use a
-virtualenv here.
+A Makefile is provided for each environment. Run the following for each language
+and then open the users endpoint at localhost on the port specified (ex:
+`localhost:5000/users`)
 
-```bash
-python3 -m virtualenv venv && \
-. venv/bin/activate && \
-pip install flask && \
-flask --app python/main run
-```
-
-Run these commands (put together in a single command to just copy the block)
-and open `localhost:5000/users` in your web browser
+- Golang - `make go`
+- Rust - `make rust`
+- Python - `make python`
 
 
 ### Definition of Done

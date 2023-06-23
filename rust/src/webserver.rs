@@ -11,7 +11,7 @@ async fn home() -> impl Responder {
 }
 
 #[derive(TemplateOnce)]
-#[template(path = "users.stpl")]
+#[template(path = "../http/users.stpl")]
 struct UsersTemplate {
     messages: Vec<String>,
 }
@@ -42,7 +42,7 @@ pub async fn serve() -> std::io::Result<()> {
             .service(home)
             .service(users)
             .service(web::resource("/users").route(web::post().to(insert_user)))
-            .service(Files::new("/http_rust", "./http_rust"))
+            .service(Files::new("/http", "./http"))
     })
     .bind(("127.0.0.1", 5656))?
     .run()
