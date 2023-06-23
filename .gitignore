@@ -1,6 +1,10 @@
 __pycache__/
 python/__pycache__/
 .mypy_cache/
+python/venv
 
 rust/Cargo.lock
 rust/target
+
+py-go/venv
+py-go/__pycache__
